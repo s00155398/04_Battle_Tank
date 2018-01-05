@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "TankAimingComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
@@ -10,22 +11,29 @@ UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
 	GENERATED_BODY()
-
 public:
-	// Sets default values for this pawn's properties
-	ATank();
+	void AimAt(FVector HitLocation);
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
-public:	
+private:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	ATank();
 	
-	
+	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+		float LaunchSpeed = 100000;//TODO FIND sensible starting value
+	 
+
+protected:
+	UTankAimingComponent* TankAimingComponent = nullptr;
+
+
 };
