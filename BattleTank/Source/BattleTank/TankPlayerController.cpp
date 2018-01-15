@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
+#include "Tank.h"
 #include "Engine/World.h"
 //Tick
 	//Super
@@ -43,7 +44,6 @@ void ATankPlayerController::AimTowardsCrossHair()
 	FVector HitLocation; //out parameter
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
 		GetControlledTank()->AimAt(HitLocation);
 	}				
 }
