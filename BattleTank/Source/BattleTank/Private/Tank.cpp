@@ -2,7 +2,7 @@
 
 #include "BattleTank/Public/Tank.h"
 #include "TankAimingComponent.h"
-
+#include "Engine/World.h"
 // Sets default values
 ATank::ATank()
 {
@@ -20,7 +20,11 @@ void ATank::BeginPlay()
 	
 }
 
-
+void ATank::FireProjectile()
+{
+	auto Time = GetWorld()->GetTimeSeconds();
+	UE_LOG(LogTemp, Warning, TEXT("Tank Fires at ::  %f") , Time);
+}
 
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
