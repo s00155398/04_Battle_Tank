@@ -8,7 +8,7 @@
 class UTankBarrel;//forward declarations
 class UTankAimingComponent;
 class UTankTurret;
-
+class AProjectile;
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -23,7 +23,7 @@ public:
 	void SetTurretReference(UTankTurret* TurretToSet);
 
 	UFUNCTION(BlueprintCallable)
-		void FireProjectile();
+		void Fire();
 
 private:	
 
@@ -37,7 +37,14 @@ private:
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 4000;
 	 
+	UPROPERTY(EditAnywhere, Category = Setup)
+		TSubclassOf<AProjectile> ProjectileBlueprint;
 
+	UTankBarrel* Barrel = nullptr;
+
+	float ReloadTimeInSeconds = 3;
+	double LastFireTime = 0;
+	
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
