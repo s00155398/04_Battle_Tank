@@ -1,14 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
-
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
-
-class UTankBarrel;//forward declarations
+class UTankMovementComponent;//forward declarations
+class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
 class AProjectile;
+
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -53,5 +53,7 @@ private:
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 };
