@@ -51,8 +51,8 @@ private:
 	UTankBarrel* Barrel = nullptr;
 	
 protected:
-	UTankAimingComponent* TankAimingComponent = nullptr;
 
+	UTankAimingComponent* TankAimingComponent = nullptr;
 	UPROPERTY(BlueprintReadOnly)
 	UTankMovementComponent* TankMovementComponent = nullptr;
 
