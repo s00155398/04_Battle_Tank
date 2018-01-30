@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+//Copyright of Embrace IT Ltd
 
 #include "TankMovementComponent.h"
 #include "TankTrack.h"
@@ -16,8 +16,6 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 	RightTrack->SetThrottle(Throw);
 
 	//TODO prevent double speed from multiple button use
-
-
 }
 
 void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
@@ -29,6 +27,9 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 	
 	auto ForwardThrow =	FVector::DotProduct(AIForwardIntention, TankForward);
 	IntendMoveForward(ForwardThrow);
+
+	auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
+	IntendTurnRight(RightThrow);
 }
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
@@ -36,7 +37,4 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(-Throw);
 	RightTrack->SetThrottle(Throw);
-
-	//TODO prevent double speed from multiple button use
-
 }

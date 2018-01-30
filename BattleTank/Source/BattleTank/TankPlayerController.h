@@ -20,9 +20,10 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		ATank* GetControlledTank() const;
 	
-	
-
 private:
 	//move tank barrel towards crosshair
 	void AimTowardsCrossHair();
@@ -32,8 +33,6 @@ private:
 	bool GetLookDirection(FVector2D ScreenLocation, FVector & LookDirection) const;
 
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
-
-	ATank* GetControlledTank() const;
 
 	UPROPERTY(EditDefaultsOnly)
 		float CrossHairXLocation = 0.5;
