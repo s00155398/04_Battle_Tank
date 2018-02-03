@@ -8,7 +8,7 @@
 #include "TankPlayerController.generated.h"//must be last
 
 class ATank;//forward declaration
-
+class UTankAimingComponent;
 
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
@@ -23,6 +23,9 @@ public:
 protected:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 		ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+		void FoundAimingComponent(UTankAimingComponent* AimComRef);
 	
 private:
 	//move tank barrel towards crosshair
