@@ -7,7 +7,7 @@
 #include "TankAIController.generated.h"
 
 
-class ATank;//forward declaration
+class UTankAimingComponent;//forward declaration
 
 UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
