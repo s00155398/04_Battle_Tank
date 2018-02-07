@@ -7,7 +7,7 @@ class UTankTurret;
 class AProjectile;
 //enums for aiming state
 UENUM()
-enum class EFiringState:uint8 {Reloading, Aiming, Locked};
+enum class EFiringState:uint8 {Reloading, Aiming, Locked, OutofAmmo};
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
 {
@@ -24,6 +24,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
 	
+	EFiringState GetFiringState() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	int GetRoundsLeft() const;
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
@@ -60,4 +64,7 @@ private:
 	double LastFireTime = 0;
 
 	FVector AimDirection;
+
+
+	int RoundsLeft = 3;
 };
