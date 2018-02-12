@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
-
 #include "GameFramework/Actor.h"
+#include "PhysicsEngine/RadialForceComponent.h"
+#include "Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
+#include "Runtime/Engine/Classes/GameFramework/ProjectileMovementComponent.h"
 #include "Projectile.generated.h"
-
 UCLASS()
 class BATTLETANK_API AProjectile : public AActor
 {
@@ -22,6 +22,14 @@ public:
 private:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
+	void OnTimerExpire();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		float DestroyDelay = 10.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		float ProjectileDamage = 20.0f;
 
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
 
